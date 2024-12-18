@@ -1,0 +1,254 @@
+/* Apply the dark green background to the page */
+body {
+  background-color: rgb(21, 32, 34) !important;
+  font-family: Arial, sans-serif !important;
+  margin: 0 !important;
+  height: 100vh !important;
+}
+
+/* Style the button */
+.home-button {
+  position: absolute !important; /* Allows precise positioning */
+  top: 15px !important; /* Distance from the top of the page */
+  left: 15px !important; /* Distance from the left of the page */
+  background-color: rgb(164, 196, 172) !important; /* Soft light green */
+  color: black !important; /* Black text */
+  padding: 15px 30px !important;
+  border: none !important;
+  border-radius: 5px !important;
+  font-size: 16px !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+}
+
+/* Style the button */
+.game-button {
+  position: absolute !important; /* Allows precise positioning */
+  top: 15px !important; /* Distance from the top of the page */
+  left: 200px !important; /* Distance from the left of the page */
+  background-color: rgb(164, 196, 172) !important; /* Soft light green */
+  color: black !important; /* Black text */
+  padding: 15px 30px !important;
+  border: none !important;
+  border-radius: 5px !important;
+  font-size: 16px !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+}
+
+/* Add a subtle hover effect */
+.home-button:hover {
+  background-color: rgb(150, 180, 160) !important; /* Slightly darker green */
+}
+
+/* Style the page title */
+.page_title {
+  text-align: center;
+  color: rgb(164, 196, 172);
+}
+
+/* Style the h1 element inside .page_title */
+.page_title h1 {
+  font-size: 3rem; /* Adjust this size as needed */
+}
+
+/* Style the paragraph container */
+.text-container {
+  border: 2px solid rgb(164, 196, 172); /* Light green border */
+  border-radius: 10px; /* Rounded corners */
+  padding: 20px; /* Space inside the border */
+  margin: 20px auto; /* Center the container and add margin */
+  width: 80%; /* Adjust the width as needed */
+}
+
+/* Style the text inside the paragraph */
+.text-container p {
+  color: rgb(164, 196, 172); /* Light green text */
+  font-size: 1.2rem; /* Adjust font size as needed */
+  margin: 0; /* Remove default margin */
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+/* Style the list container */
+.list-container {
+  margin: 20px auto; /* Center the container and add margin */
+  width: 80%; /* Adjust the width as needed */
+  color: rgb(164, 196, 172); /* Light green text */
+}
+
+/* Style the list title */
+.list-container h2 {
+  font-size: 1.5rem; /* Adjust font size as needed */
+  margin-bottom: 10px; /* Space below the title */
+  margin-left: 40px; /* Move the title 40px to the left */
+}
+
+/* Style the ordered list */
+.list-container ol {
+  padding-left: 20px; /* Add space before the list */
+  font-size: 1.2rem; /* Adjust font size as needed */
+  margin-left: 60px; /* Move the list 40px to the left */
+}
+
+/* Style the horizontal line */
+.line {
+  width: 90%; /* Adjust the width to span most of the page */
+  height: 10px; /* Thickness of the line */
+  background-color: rgb(164, 196, 172); /* Light green color */
+  margin: 160px auto 0; /* Position 200px below the last list item and center it */
+}
+
+/* Style the resume title */
+.resume-title h2 {
+  color:rgb(164, 196, 172);
+  font-size: 1.5rem; /* Adjust font size as needed */
+  margin-left: 120px; /* Move the title 40px to the left */
+  margin-bottom: 20px; /* Add space below title */
+}
+
+/* Resume container styling */
+.resume-container {
+  background-color: black; /* Black background */
+  color: mediumgray; /* Medium grey font color */
+  border-radius: 15px; /* Rounded corners */
+  padding: 20px; /* Space inside the container */
+  margin: 40px auto; /* Centered with margin */
+  width: 80%; /* Adjust the width as needed */
+  color:rgb(164, 196, 172); /* color for font */
+  margin-bottom: 20px; /* create space under window */
+}
+
+/* Styling for the content inside the resume */
+.resume-content p,
+.resume-content ul {
+  font-size: 1rem; /* Standard font size */
+  line-height: 1.5; /* Spacing between lines */
+  color:rgb(164, 196, 172); /* color for font */
+}
+
+/* Styling for headers within the resume */
+.resume-content h2,
+.resume-content h3 {
+  font-size: 1.5rem; /* Larger size for subheaders */
+  margin-bottom: 10px; /* Space below each header */
+  color:rgb(164, 196, 172); /* color for font */
+}
+
+/* Styling for list items */
+.resume-content ul {
+  padding-left: 20px; /* Space for list indentation */
+  margin-bottom: 15px; /* Add space below each list */
+  color:rgb(164, 196, 172); /* color for font */
+}
+
+/* Style the horizontal line */
+.small-line {
+  width: 102%; /* Adjust the width to span most of the page */
+  height: 4px; /* Thickness of the line */
+  background-color: rgb(164, 196, 172); /* Light green color */
+  margin: 4px auto 0; /* Position 200px below the last list item and center it */
+}
+
+/* Style the horizontal line */
+.line-pt2 {
+  width: 90%; /* Adjust the width to span most of the page */
+  height: 10px; /* Thickness of the line */
+  background-color: rgb(164, 196, 172); /* Light green color */
+  margin: 10px auto 0; /* Position 200px below the last list item and center it */
+}
+
+/* Style the video title */
+.video-title h2 {
+  color:rgb(164, 196, 172); /* light green as always */
+  font-size: 1.7rem; /* Adjust font size as needed */
+  margin-left: 120px; /* Move the title 40px to the left */
+  margin-bottom: 20px; /* Add space below title */
+}
+
+/* Style the video container */
+.video-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px auto;
+  margin-bottom: 20px;
+}
+
+.video-container iframe {
+  width: 672px; /* Standard YouTube video size */
+  height: 378px;
+  border: 10px solid black; /* Black border around the video */
+  border-radius: 10px; /* Optional rounded corners */
+}
+
+/* Style the horizontal line */
+.line-pt3 {
+  width: 90%; /* Adjust the width to span most of the page */
+  height: 10px; /* Thickness of the line */
+  background-color: rgb(164, 196, 172); /* Light green color */
+  margin: 40px auto 0; /* Position 200px below the last list item and center it */
+}
+
+/* Center the Tableau */
+.tableauPlaceholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto;
+  margin-bottom: 40px;
+}
+
+/* Style the end-title */
+.end-title {
+  text-align: center;
+  color: rgb(164, 196, 172);
+}
+
+/* Style the h1 element of end-title */
+.end-title h1 {
+  font-size: 5rem; /* Adjust this size as needed */
+}
+
+/* Add styles for the navigation buttons */
+.nav-buttons {
+  position: absolute !important;
+  top: 15px !important;
+  right: 15px !important;
+}
+
+.nav-button {
+  background-color: black !important; /* Black background */
+  color: lightgrey !important; /* Light grey text */
+  padding: 10px 20px !important; /* Adjust padding for better button size */
+  border: 2px solid rgb(164, 196, 172) !important; /* Light green border */
+  border-radius: 5px !important; /* Rounded corners */
+  font-size: 14px !important; /* Adjust font size as needed */
+  text-decoration: none !important; /* Remove underline */
+  margin: 5px !important; /* Space between buttons */
+  cursor: pointer !important; /* Pointer on hover */
+  transition: all 0.3s ease; /* Smooth transition for hover effect */
+}
+
+/* Add a hover effect */
+.nav-button:hover {
+  background-color: rgb(164, 196, 172) !important; /* Light green background on hover */
+  color: black !important; /* Black text on hover */
+}
+
+/* Add focus style for accessibility */
+.nav-button:focus {
+  outline: none !important; /* Remove default focus outline */
+  box-shadow: 0 0 5px rgb(164, 196, 172) !important; /* Light green focus outline */
+}
+
+#picture {
+  margin: 0px auto;    /* Centers the div itself horizontally */
+  width: 80%;           /* Optional: You can control the width of the div */
+  margin-top: 20px;     /* Lowers the image a little */
+}
+
+#picture img {
+  display: block;      /* Ensures the image is treated as a block element */
+  margin: 0 auto;      /* Centers the image horizontally */
+  margin-top: 20px;     /* Lowers the image a little */
+}
+

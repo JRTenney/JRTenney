@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stick Ninja Game</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            flex-direction: column; /* Stack content vertically */
+        }
+        canvas {
+            display: block;
+        }
+        .instructions {
+            position: absolute;
+            top: 10px;
+            width: 100%;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            color: black;
+            z-index: 10;
+        }
+        a {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 10px 20px;
+            background-color: grey;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            text-decoration: none;
+            text-align: center;
+            line-height: 40px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Instructions at the top -->
+    <div class="instructions">
+        Hit and hold the spacebar to play!
+    </div>
+
+    <a href="../index.html">Home Page</a>
+    <canvas id="gameCanvas"></canvas>
+    
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight * 0.8; // Center the game higher on the screen
+
+        let baseHeight = 10;
+        let stickWidth = 5;
+
+        let score = 0;
+        let platforms = []; const platformColors = []; // Array to store platform colors
+        let stick = { x: 0, y: 0, length: 0, isGrowing: false, falling: false, angle: 0 };
+
+        const player = { x: 50, y: canvas.height - 52, width: 20, height: 30, moving: false }; // Adjusted y position slightly above the platform
+
+        function generatePlatforms() { platforms = []; platformColors.length = 0; let x = 50; while (x < canvas.width) {
+                let width = Math.floor(50 + Math.random() * 100); // Random platform width
+                platforms.push({ x, y: canvas.height - 20, width }); platformColors.push(`hsl(${Math.random() * 360}, 100%, 50%)`);
+                x += width + Math.floor(100 + Math.random() * 150); // Random gap
+            }
+        }
+        generatePlatforms();
+
+        function drawPlatforms() { ctx.fillStyle = 'black'; for (let i = 0; i < platforms.length; i++) { const platform = platforms[i]; ctx.fillStyle = platformColors[i]; ctx.fillRect(platform.x, platform.y, platform.width, baseHeight);
+            }
+        }
+
+        function drawStick() {
+            if (stick.length > 0) {
+                ctx.save();
+                ctx.translate(stick.x, stick.y);
+                ctx.rotate(stick.angle);
+                ctx.fillStyle = 'black';
+                ctx.fillRect(0, -stick.length, stickWidth, stick.length);
+                ctx.restore();
+            }
+        }
+
+        function drawPlayer() {
+            ctx.fillStyle = 'red';
+            ctx.fillRect(player.x, player.y - player.height, player.width, player.height); // Player above platform
+        }
+
+        function drawScore() {
+            ctx.font = '20px Arial';
+            ctx.fillStyle = 'black';
+            ctx.fillText(`Score: ${score}`, 10, 30);
+        }
+
+        function updateStick() {
+            if (stick.isGrowing && !stick.falling) {
+                stick.length += 5;
+            }
+        }
+
+        function dropStick() {
+            stick.falling = true;
+            let dropAnimation = setInterval(() => {
+                stick.angle += 0.05;
+                if (stick.angle >= Math.PI / 2) {
+                    stick.angle = Math.PI / 2;
+                    clearInterval(dropAnimation);
+                    movePlayer();
+                }
+            }, 20);
+        }
+
+        function movePlayer() {
+            player.moving = true;
+            let targetX = stick.x + stick.length;
+            let moveAnimation = setInterval(() => {
+                player.x += 5;
+                if (player.x >= targetX) {
+                    clearInterval(moveAnimation);
+                    player.moving = false;
+
+                    // Check if the player lands on the next platform
+                    const nextPlatform = platforms.find(platform => targetX >= platform.x && targetX <= platform.x + platform.width);
+                    if (nextPlatform) {
+                        score++;
+
+                        // Adjust player position to the middle of the new platform
+                        player.x = nextPlatform.x + nextPlatform.width / 2 - player.width / 2;
+                        player.y = nextPlatform.y - 2; // Keep slightly above the platform
+
+                        // Update stick starting point
+                        stick = { x: player.x + player.width, y: nextPlatform.y, length: 0, isGrowing: false, falling: false, angle: 0 };
+
+                        // Shift the screen and generate a new platform
+                        shiftScreen(nextPlatform);
+                    } else {
+                        setTimeout(() => {
+                            alert('Game Over! Final Score: ' + score);
+                            document.location.reload();
+                        }, 500);
+                    }
+                }
+            }, 20);
+        }
+
+        function shiftScreen(nextPlatform) {
+            let shiftDistance = nextPlatform.x - 50; // Shift so the next platform aligns with the starting position
+            for (let platform of platforms) {
+                platform.x -= shiftDistance;
+            }
+            player.x -= shiftDistance;
+            stick.x -= shiftDistance;
+
+            // Add a new platform at the far right
+            let lastPlatform = platforms[platforms.length - 1];
+            let newPlatformX = lastPlatform.x + lastPlatform.width + Math.floor(100 + Math.random() * 150);
+            let newPlatformWidth = Math.floor(50 + Math.random() * 100);
+            platforms.push({ x: newPlatformX, y: canvas.height - 20, width: newPlatformWidth });
+        }
+
+        function gameLoop() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            drawPlatforms();
+            drawStick();
+            drawPlayer();
+            drawScore();
+            updateStick();
+
+            requestAnimationFrame(gameLoop);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'Space' && !stick.isGrowing && !stick.falling) {
+                stick.isGrowing = true;
+                stick.x = player.x + player.width;
+                stick.y = platforms.find(p => player.x >= p.x && player.x <= p.x + p.width).y;
+            }
+        });
+
+        document.addEventListener('keyup', (e) => {
+            if (e.code === 'Space' && stick.isGrowing) {
+                stick.isGrowing = false;
+                dropStick();
+            }
+        });
+
+        gameLoop();
+    </script>
+</body>
+</html>
